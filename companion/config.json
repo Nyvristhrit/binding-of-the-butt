@@ -1,0 +1,18 @@
+{
+  "INTENSITY_BASE": 0.07,
+  "DECAY_RATE": 0.01,
+
+  "EVENT_BOOSTS": {
+    "HURT": 0.3,
+    "BOSS_DEAD": 0.5,
+    "ENEMY_DEAD": 0.1,
+    "ITEM_RARE": 0.2
+  },
+
+  "HEART_LOW": {
+    "type": "loop",
+    "intensity": 0.15,
+    "duration": 0.6,
+    "interval": 1.2
+  }
+}
