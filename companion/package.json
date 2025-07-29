@@ -1,0 +1,17 @@
+{
+  "name": "buttisaac-companion",
+  "version": "1.0.0",
+  "description": "Local companion for Binding of the Butt – relays game events to Buttplug",
+  "main": "companion.js",
+  "bin": "companion.js",
+  "scripts": {
+    "start": "node companion.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "buttplug": "^3.2.2",
+    "ws": "^8.18.3"
+  }
+}
