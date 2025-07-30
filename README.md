@@ -1,6 +1,6 @@
 # Binding of the Butt
 
-Ce document décrit les étapes nécessaires à l’installation et à la configuration du mod **Binding of the Butt** (compatible Repentance v1.7.9 / Repentance+). Suivez attentivement chaque section pour un déploiement propre et professionnel.
+Ce document décrit les étapes nécessaires à l’installation et à la configuration du mod **Binding of the Butt** (compatible Repentance v1.7.9 / Repentance+).
 
 ---
 
