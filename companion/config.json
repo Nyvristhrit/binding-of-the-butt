@@ -1,12 +1,13 @@
 {
-  "INTENSITY_BASE": 0.07,
-  "DECAY_RATE": 0.01,
-
+  "INTENSITY_BASE": 0.0,
+  "DECAY_RATE": 0.003,
   "EVENT_BOOSTS": {
-    "HURT": 0.3,
-    "BOSS_DEAD": 0.5,
-    "ENEMY_DEAD": 0.1,
-    "ITEM_RARE": 0.2
+    "PLAYER_HURT": 0.2,
+    "BOSS_DEATH": 0.4,
+    "SPECIAL_ENEMY_DEATH": 0.03,
+    "ENEMY_DEATH": 0.05,
+    "ITEM_QUALITY": 0.15,
+    "GAME_START": 0.07
   },
 
   "HEART_LOW": {
