@@ -5,7 +5,8 @@
   "main": "companion.js",
   "bin": "companion.js",
   "scripts": {
-    "start": "node companion.js"
+   	"start": "node companion.js",
+  	"build": "pkg companion.js --targets node18-win-x64 --output companion.exe"
   },
   "keywords": [],
   "author": "",
