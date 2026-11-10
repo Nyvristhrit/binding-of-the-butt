@@ -14,6 +14,7 @@ const FRAME_EVERY = 2; // UI frames at 10 Hz
 const log = (...a) => console.log(new Date().toTimeString().slice(0, 8), ...a);
 
 async function main() {
+  process.title = "Binding of the Butt";
   let settings = settingsStore.load();
   const engine = new Engine(settings);
   const devices = new Devices(settings);
@@ -113,7 +114,18 @@ async function main() {
         }),
     });
     const url = `http://127.0.0.1:${settings.webPort}`;
-    log(`Control panel: ${url}`);
+    console.log(
+      [
+        "",
+        "  ┌───────────────────────────────────────────────┐",
+        `  │  Binding of the Butt companion v${version.padEnd(14)}│`,
+        `  │  Control panel: ${url.padEnd(30)}│`,
+        "  │  Keep this window open while you play.        │",
+        "  │  Close it to stop the toys and quit.          │",
+        "  └───────────────────────────────────────────────┘",
+        "",
+      ].join("\n"),
+    );
     if (settings.openBrowser && process.platform === "win32") exec(`start "" "${url}"`);
   } catch (e) {
     log(`Control panel unavailable (port ${settings.webPort}): ${e.message}`);
@@ -143,7 +155,8 @@ async function main() {
   };
   process.on("SIGINT", shutdown);
   process.on("SIGTERM", shutdown);
-  log(`Binding of the Butt companion v${version} — settings: ${settingsStore.file}`);
+  process.on("SIGHUP", shutdown); // console window closed (Windows)
+  log(`Settings file: ${settingsStore.file}`);
 }
 
 main().catch((e) => {

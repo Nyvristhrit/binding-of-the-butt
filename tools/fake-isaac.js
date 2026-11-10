@@ -2,7 +2,7 @@
 // Usage: node tools/fake-isaac.js [scenario]   scenarios: tour (default), bombs, lowhp
 const net = require("net");
 
-const sock = net.connect(58711, "127.0.0.1");
+const sock = net.connect(Number(process.env.BOB_PORT) || 58711, "127.0.0.1");
 const t0 = Date.now();
 const stamp = () => `+${String(Math.round((Date.now() - t0) / 1000)).padStart(3)}s`;
 const send = (o) => sock.write(JSON.stringify(o) + "\n");

@@ -2,6 +2,8 @@
 
 A mod for **The Binding of Isaac: Repentance / Repentance+** that makes your connected toys react to the game, through [Intiface Central](https://intiface.com/central/) (Buttplug). Works with anything Intiface supports (Lovense and many others), several toys at once, each motor driven separately.
 
+![Control panel: live intensity strip and event cards](docs/panel.png)
+
 - **Ambient tension** that builds up through each floor, rises in fights and boss rooms, and calms down in cleared rooms. Each new floor starts a bit hotter.
 - **Patterns for game events**: bombs send shockwaves (chain them for bigger waves), hits jolt then cut, bosses end in a crescendo, items sweep higher the better they are, a heartbeat kicks in at low health, and more.
 - **Control panel** in your browser: live view of every motor, event feed, intensity cap, per-event strength and on/off, per-toy scale, a test button for every pattern. English and French.
@@ -20,8 +22,16 @@ A mod for **The Binding of Isaac: Repentance / Repentance+** that makes your con
 ## Play
 
 1. Start Intiface Central, press *Start Server*, connect your toys.
-2. Start `companion.exe`. The control panel opens in your browser.
-3. Launch Isaac and start a run. A small line at the bottom-left confirms the connection.
+2. Start `companion.exe`. A console window opens and shows what's happening (Intiface, toys, game). Your browser opens the control panel at **http://127.0.0.1:7878**; if it doesn't, open that address yourself. Keep the console open while you play; closing it stops the toys.
+3. Launch Isaac and start a run. A small line at the bottom-left of the game confirms the connection.
+
+Settings are saved in `settings.json` next to `companion.exe`.
+
+## Troubleshooting
+
+- **The game stutters**: switch to exclusive fullscreen. With the game closed, set `UseExclusiveFullscreen=1` in `Documents\My Games\Binding of Isaac Repentance+\options.ini`.
+- **"BoB: add --luadebug…" in game**: the launch option is missing (see Install).
+- **"BoB: companion not found"**: start `companion.exe` before or during the run, it reconnects on its own.
 
 ## Develop
 

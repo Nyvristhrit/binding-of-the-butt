@@ -72,7 +72,6 @@
     $("#lang").textContent = t("langSwitch");
     renderLogToggle();
     $("#scope").setAttribute("aria-label", t("scopeLabel"));
-    $("#scope-empty").textContent = t("scopeEmpty");
     renderEvents();
     renderToys();
     renderStatus();
@@ -164,7 +163,6 @@
     const ul = $("#toys");
     ul.innerHTML = "";
     $("#toys-empty").hidden = devices.devices.length > 0;
-    $("#scope-empty").hidden = devices.devices.length > 0;
     devices.devices.forEach((d) => {
       const li = document.createElement("li");
       li.classList.toggle("off", !d.enabled);
@@ -185,18 +183,23 @@
     renderLegend();
   }
 
+  // One trace per motor; without toys, the two raw output channels.
+  function traceKeys() {
+    if (!devices.devices.length) return [0, 1].map((m) => ({ key: `out:${m}`, label: t("output", m) }));
+    return devices.devices.flatMap((d) =>
+      d.outputs.map((_, m) => ({ key: `${d.index}:${m}`, label: d.outputs.length > 1 ? `${d.name}, ${t("motor", m)}` : d.name })),
+    );
+  }
+
   function renderLegend() {
     const ul = $("#legend");
     ul.innerHTML = "";
-    let i = 0;
-    for (const d of devices.devices) {
-      d.outputs.forEach((_, m) => {
-        const li = document.createElement("li");
-        li.innerHTML = `<i style="background:${INK[i++ % INK.length]}"></i>`;
-        li.append(d.outputs.length > 1 ? `${d.name}, ${t("motor", m)}` : d.name);
-        ul.append(li);
-      });
-    }
+    traceKeys().forEach(({ label }, i) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<i style="background:${INK[i % INK.length]}"></i>`;
+      li.append(label);
+      ul.append(li);
+    });
   }
 
   function syncControls() {
@@ -269,6 +272,14 @@
         if (arr.length > HISTORY) arr.shift();
       });
     }
+    // No toys: show what would be sent, so the strip is never dead.
+    f.out.forEach((v, m) => {
+      const key = `out:${m}`;
+      if (!traces.has(key)) traces.set(key, []);
+      const arr = traces.get(key);
+      arr.push(v);
+      if (arr.length > HISTORY) arr.shift();
+    });
     tensionHist.push(f.tension);
     if (tensionHist.length > HISTORY) tensionHist.shift();
     const pct = Math.round(f.tension * 100);
@@ -313,15 +324,12 @@
     line(tensionHist, x, y);
     ctx.setLineDash([]);
 
-    let i = 0;
-    for (const d of devices.devices) {
-      d.outputs.forEach((_, m) => {
-        ctx.strokeStyle = INK[i++ % INK.length];
-        ctx.lineWidth = 3.5;
-        ctx.lineJoin = ctx.lineCap = "round";
-        line(traces.get(`${d.index}:${m}`) || [], x, y);
-      });
-    }
+    ctx.lineWidth = 3.5;
+    ctx.lineJoin = ctx.lineCap = "round";
+    traceKeys().forEach(({ key }, i) => {
+      ctx.strokeStyle = INK[i % INK.length];
+      line(traces.get(key) || [], x, y);
+    });
     requestAnimationFrame(draw);
   }
   function line(arr, x, y) {

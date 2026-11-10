@@ -78,7 +78,6 @@ main > section + section, .cols { margin-top: var(--s7); }
   overflow: hidden;
 }
 #scope { display: block; width: 100%; height: clamp(180px, 32vh, 300px); }
-.scope-empty { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: #2b1d14aa; font: 1.3rem var(--hand); text-align: center; padding: var(--s4); }
 .legend { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); list-style: none; padding: 0; margin: var(--s3) 0 0; font-size: 0.9rem; color: var(--muted); }
 .legend li { display: flex; align-items: center; gap: var(--s2); }
 .legend i { width: 22px; height: 4px; border-radius: 2px; display: inline-block; }
@@ -86,7 +85,7 @@ main > section + section, .cols { margin-top: var(--s7); }
 /* Event board */
 .section-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s2) var(--s4); margin-bottom: var(--s4); }
 .hint { margin: 0; color: var(--muted); font-size: 0.9rem; }
-.board { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(178px, 1fr)); gap: var(--s3); }
+.board { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(max(178px, calc((100% - 4 * var(--s3)) / 5)), 1fr)); gap: var(--s3); }
 .card {
   display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--s2); padding: var(--s3);
   background: var(--dirt-up); border: 2px solid var(--line); border-radius: var(--r-m);
