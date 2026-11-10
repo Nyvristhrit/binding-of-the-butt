@@ -1,18 +1,29 @@
 {
-  "name": "buttisaac-companion",
+  "name": "binding-of-the-butt-companion",
   "version": "1.0.0",
-  "description": "Local companion for Binding of the Butt – relays game events to Buttplug",
-  "main": "companion.js",
-  "bin": "companion.js",
-  "scripts": {
-   	"start": "node companion.js",
-  	"build": "pkg companion.js --targets node18-win-x64 --output companion.exe"
-  },
-  "keywords": [],
-  "author": "",
+  "private": true,
+  "description": "Bridges The Binding of Isaac events to Buttplug/Intiface devices",
+  "main": "src/index.js",
+  "bin": "src/index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test test/*.test.js",
+    "build": "pkg . --targets node22-win-x64 --output ../dist/companion.exe"
+  },
+  "pkg": {
+    "assets": [
+      "web/**/*"
+    ]
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
-    "buttplug": "^3.2.2",
-    "ws": "^8.18.3"
+    "buttplug": "^5.0.2",
+    "ws": "^8.22.2"
+  },
+  "devDependencies": {
+    "@yao-pkg/pkg": "^6.25.0"
   }
 }

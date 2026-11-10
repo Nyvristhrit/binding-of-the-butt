@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<name>Binding of the Butt</name>
+	<directory>binding of the butt</directory>
+	<description>Syncs in-game events with Buttplug / Intiface devices through a local companion app. Requires the --luadebug launch option.</description>
+	<version>1.0.0</version>
+	<visibility>Private</visibility>
+</metadata>

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+companion/settings.json
+tools/shots/
+tools/*.log
+_archives/
+CLAUDE.md
+.claude/

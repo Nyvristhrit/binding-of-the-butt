@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Binding of the Butt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Gochi+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top"><div class="wrap top-inner">
+    <h1 class="brand">Binding of the Butt</h1>
+    <ul class="status" aria-live="polite">
+      <li id="st-game" data-state="off"><span class="dot"></span><span class="txt"></span></li>
+      <li id="st-intiface" data-state="off"><span class="dot"></span><span class="txt"></span></li>
+    </ul>
+    <div class="top-actions">
+      <button id="lang" class="ghost" type="button"></button>
+      <button id="stop" class="stop" type="button" aria-pressed="false"></button>
+    </div>
+  </div></header>
+
+  <main class="wrap">
+    <section class="strip" aria-labelledby="strip-title">
+      <div class="strip-head">
+        <h2 id="strip-title" data-i18n="live"></h2>
+        <div class="tension">
+          <svg viewBox="0 0 32 28" aria-hidden="true">
+            <defs><clipPath id="heart"><path d="M16 27 C6 19 1 14 1 8 C1 4 4 1 8 1 C11 1 14 3 16 6 C18 3 21 1 24 1 C28 1 31 4 31 8 C31 14 26 19 16 27Z"/></clipPath></defs>
+            <rect width="32" height="28" class="heart-empty" clip-path="url(#heart)"/>
+            <rect id="heart-fill" x="0" y="28" width="32" height="28" class="heart-full" clip-path="url(#heart)"/>
+          </svg>
+          <p><span class="num"><span id="tension-val">0</span>%</span><span class="lbl" data-i18n="tension"></span></p>
+        </div>
+      </div>
+      <div class="paper">
+        <canvas id="scope"></canvas>
+        <p id="scope-empty" class="scope-empty"></p>
+      </div>
+      <ul id="legend" class="legend"></ul>
+    </section>
+
+    <section class="board-wrap" aria-labelledby="events-title">
+      <div class="section-head">
+        <h2 id="events-title" data-i18n="events"></h2>
+        <p class="hint" data-i18n="eventsHint"></p>
+      </div>
+      <ul id="board" class="board"></ul>
+    </section>
+
+    <div class="cols">
+      <section class="settings" aria-labelledby="settings-title">
+        <div class="col-head"><h2 id="settings-title" data-i18n="settings"></h2></div>
+        <details class="fold" open>
+          <summary data-i18n="intensity"></summary>
+          <div class="fold-body">
+            <label class="slider"><span data-i18n="maxIntensity"></span><input type="range" min="0" max="1" step="0.05" data-key="maxIntensity"><output></output></label>
+            <label class="slider"><span data-i18n="ambientStrength"></span><input type="range" min="0" max="1" step="0.05" data-key="ambientStrength"><output></output></label>
+            <label class="slider"><span data-i18n="heartbeatStrength"></span><input type="range" min="0" max="1" step="0.05" data-key="heartbeatStrength"><output></output></label>
+          </div>
+        </details>
+        <details class="fold">
+          <summary data-i18n="floorRamp"></summary>
+          <div class="fold-body">
+            <label class="slider"><span data-i18n="floorStart"></span><input type="range" min="0" max="0.6" step="0.02" data-key="floorStart"><output></output></label>
+            <label class="slider"><span data-i18n="floorStep"></span><input type="range" min="0" max="0.2" step="0.01" data-key="floorStep"><output></output></label>
+          </div>
+        </details>
+        <details class="fold" open>
+          <summary data-i18n="toys"></summary>
+          <div class="fold-body">
+            <ul id="toys" class="toys"></ul>
+            <p id="toys-empty" class="muted" data-i18n="toysEmpty"></p>
+            <div class="row">
+              <button id="scan" class="ghost" type="button" data-i18n="scan"></button>
+              <button id="reset" class="ghost" type="button" data-i18n="reset"></button>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="log" aria-labelledby="log-title">
+        <div class="col-head">
+          <h2 id="log-title" data-i18n="happening"></h2>
+          <button id="log-toggle" class="ghost small" type="button" aria-expanded="true" aria-controls="log-body"></button>
+        </div>
+        <div id="log-body">
+          <ol id="feed" class="feed"></ol>
+          <p id="feed-empty" class="muted" data-i18n="feedEmpty"></p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="wrap foot"><span data-i18n="panicHint"></span><span id="version"></span></footer>
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
